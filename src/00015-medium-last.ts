@@ -7,4 +7,4 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type Last<T extends any[]> = T extends [any, ...infer R] ? (R extends [] ? T[0] : Last<R>) : never;
+type Last<T extends any[]> = T extends [...any, infer R] ? R : never;
