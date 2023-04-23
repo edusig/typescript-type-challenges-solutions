@@ -20,4 +20,4 @@ type cases = [
 type error = TupleToObject<[[1, 2], {}]>;
 
 // ============= Your Code Here =============
-type TupleToObject<T extends readonly any[]> = { [K in T[number]]: K };
+type TupleToObject<T extends readonly PropertyKey[]> = { [K in T[number]]: K };
