@@ -7,10 +7,14 @@ type cases = [
 ];
 
 // ============= Your Code Here =============
-type RemovesOptionalNotUndefined<T> = { [K in keyof T]-?: undefined extends T[K] ? never : T[K] };
-type RemovesOptionalUndefined<T> = RemovesOptionalNotUndefined<{
-  [K in keyof T]: T[K] extends undefined ? K : K;
-}>[keyof T];
+// type RemovesOptionalNotUndefined<T> = { [K in keyof T]-?: undefined extends T[K] ? never : T[K] };
+// type RemovesOptionalUndefined<T> = RemovesOptionalNotUndefined<{
+//   [K in keyof T]: T[K] extends undefined ? K : K;
+// }>[keyof T];
+// type GetRequired<T> = {
+//   [K in RemovesOptionalUndefined<T>]: T[K];
+// };
+
 type GetRequired<T> = {
-  [K in RemovesOptionalUndefined<T>]: T[K];
+  [P in keyof T as T[P] extends Required<T>[P] ? P : never]: T[P];
 };
